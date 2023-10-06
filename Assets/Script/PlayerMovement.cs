@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         
             Jump();
 
-        if (isGrounded&&JumpTimer>=0.08f)
+        if (isGrounded&&JumpTimer>=0.1f)
         {
             PlayerAnimator.SetBool("Jump", false);
             JumpTimer = 0;
