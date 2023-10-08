@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d1b042b41b1f4147a490593134f5ae3
+guid: b7e5ed8d875e0c44494412595ea2dde9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,85 +117,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: botton_0
+      name: Botton_down_unpressed
       rect:
         serializedVersion: 2
-        x: 224
-        y: 373
-        width: 155
-        height: 139
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b7472c403c43f749bf9a5e52671af60
-      internalID: 548499233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: botton_1
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 230
+        x: 48
+        y: 433
         width: 146
-        height: 140
+        height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f90faf8b65afd04887700a66f87bebd
-      internalID: 255317950
+      spriteID: ad514b2f0ab758b4caa5c92fdbba9727
+      internalID: -2095041325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: botton_2
+      name: Botton_down_pressed
       rect:
         serializedVersion: 2
-        x: 230
-        y: 88
+        x: 217
+        y: 434
+        width: 146
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552e5812bcb26e84aa8d8c148530ce1a
+      internalID: -1487747648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Botton_left_unpressed
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 433
+        width: 141
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166ca5ce885161249a5f6759d9f4affc
+      internalID: -1076417419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Botton_up_unpressed
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 265
         width: 144
-        height: 140
+        height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1af61485343b474b97adaa87eb4a70e
-      internalID: -1468510137
+      spriteID: edd7e52f34fea5642a3dbeda5308fc5c
+      internalID: -1564074062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: botton_3
+      name: Botton_up_pressed
       rect:
         serializedVersion: 2
-        x: 367
-        y: 230
-        width: 152
-        height: 139
+        x: 221
+        y: 266
+        width: 146
+        height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 004398cda9b51604d917fcd02597d472
-      internalID: -172936239
+      spriteID: 102b567b044b5f244b86a5f46e26b005
+      internalID: 1412934367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Botton_left_pressed
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 271
+        width: 146
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b2f8fc6c12172c4f9926f9dbb335b4e
+      internalID: -1515547076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Botton_right_unpressed
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 103
+        width: 146
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32be833a1c630dd458b251e52683119d
+      internalID: 1616495917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Botton_right_pressed
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 104
+        width: 144
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aacb3458c9786b04b8127290c7e85952
+      internalID: -1008041163
       vertices: []
       indices: 
       edges: []
@@ -211,10 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      botton_0: 548499233
-      botton_1: 255317950
-      botton_2: -1468510137
-      botton_3: -172936239
+      Botton_down_pressed: -1487747648
+      Botton_down_unpressed: -2095041325
+      Botton_left_pressed: -1515547076
+      Botton_left_unpressed: -1076417419
+      Botton_right_pressed: -1008041163
+      Botton_right_unpressed: 1616495917
+      Botton_up_pressed: 1412934367
+      Botton_up_unpressed: -1564074062
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
