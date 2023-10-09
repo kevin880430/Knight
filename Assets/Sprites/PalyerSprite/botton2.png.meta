@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7e5ed8d875e0c44494412595ea2dde9
+guid: 4723299fcb5dbdc40999a1a94ba99150
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Botton_down_unpressed
+      name: Button_down
       rect:
         serializedVersion: 2
         x: 48
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad514b2f0ab758b4caa5c92fdbba9727
-      internalID: -2095041325
+      spriteID: bc4b33f07b1a9cb4e8dd6d1feba6f48d
+      internalID: 171864608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_down_pressed
+      name: Button_down_pressed
       rect:
         serializedVersion: 2
         x: 217
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 552e5812bcb26e84aa8d8c148530ce1a
-      internalID: -1487747648
+      spriteID: 11ce56b810ee75f4cb7d11dc8d38b25b
+      internalID: -367634936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_left_unpressed
+      name: Button_left
       rect:
         serializedVersion: 2
         x: 402
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 166ca5ce885161249a5f6759d9f4affc
-      internalID: -1076417419
+      spriteID: c81390e98bd442f4caebbc90c0f176a7
+      internalID: 1174509716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_up_unpressed
+      name: Button_up
       rect:
         serializedVersion: 2
         x: 54
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edd7e52f34fea5642a3dbeda5308fc5c
-      internalID: -1564074062
+      spriteID: 727c94ad010425f4eaa517b1ceca55c5
+      internalID: -899954143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_up_pressed
+      name: Button_up_pressed
       rect:
         serializedVersion: 2
         x: 221
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 102b567b044b5f244b86a5f46e26b005
-      internalID: 1412934367
+      spriteID: 4ca195ec84576224e938c6ff6c2f3235
+      internalID: -957694676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_left_pressed
+      name: Button_left_pressed
       rect:
         serializedVersion: 2
         x: 400
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b2f8fc6c12172c4f9926f9dbb335b4e
-      internalID: -1515547076
+      spriteID: 735636f09b62d2648848509a4a267332
+      internalID: -1693961858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_right_unpressed
+      name: Button_right
       rect:
         serializedVersion: 2
         x: 55
@@ -257,17 +257,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32be833a1c630dd458b251e52683119d
-      internalID: 1616495917
+      spriteID: ad00feb5960cda04da3ae32c403f50c6
+      internalID: -696231442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Botton_right_pressed
+      name: Button_right_pressed
       rect:
         serializedVersion: 2
-        x: 225
+        x: 224
         y: 104
         width: 144
         height: 142
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aacb3458c9786b04b8127290c7e85952
-      internalID: -1008041163
+      spriteID: b7eac82f89ae71647b523232da8f67ff
+      internalID: 145977329
       vertices: []
       indices: 
       edges: []
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Botton_down_pressed: -1487747648
-      Botton_down_unpressed: -2095041325
-      Botton_left_pressed: -1515547076
-      Botton_left_unpressed: -1076417419
-      Botton_right_pressed: -1008041163
-      Botton_right_unpressed: 1616495917
-      Botton_up_pressed: 1412934367
-      Botton_up_unpressed: -1564074062
+      Button_down: 171864608
+      Button_down_pressed: -367634936
+      Button_left: 1174509716
+      Button_left_pressed: -1693961858
+      Button_right: -696231442
+      Button_right_pressed: 145977329
+      Button_up: -899954143
+      Button_up_pressed: -957694676
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1023440672905016429}
   - component: {fileID: -7967425912739061203}
   m_Layer: 0
-  m_Name: Botton_left
+  m_Name: Button_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_Size: {x: 1.1015625, y: 1.1015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!222 &1023440672905016429
@@ -111,6 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4905c2f1b7aaad48a77fab18dff7c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressedSprite: {fileID: -1515547076, guid: b7e5ed8d875e0c44494412595ea2dde9, type: 3}
-  unpressedSprite: {fileID: -1076417419, guid: b7e5ed8d875e0c44494412595ea2dde9, type: 3}
-  InputKey: 276
+  pressedSprite: {fileID: -1693961858, guid: 4723299fcb5dbdc40999a1a94ba99150, type: 3}
+  unpressedSprite: {fileID: 1174509716, guid: 4723299fcb5dbdc40999a1a94ba99150, type: 3}
+  key: 276

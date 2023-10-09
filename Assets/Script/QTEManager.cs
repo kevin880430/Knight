@@ -5,12 +5,16 @@ using UnityEngine.UI;
 public class QTEManager : MonoBehaviour
 {
     public GameObject[] buttons; // 存放按鈕的GameObject
-    public Transform spawnPoint; // 生成按鈕的位置
+    public Transform spawnPosition; // 生成按鈕的位置
     public int sequenceLength = 4; // 按鈕序列的長度
     public int currentIndex = 0;
     public List<GameObject> currentSequence = new List<GameObject>();
-    public bool isRightBtn;
-    public BottonControler bottoncontrol;
+    public List<GameObject> generatedButtons = new List<GameObject>();
+    public GameObject spawnPositionObj;
+    public ButtonController bottoncontrol;
+    private PlayerControl Player;
+    private EnemyControl Enemy;
+    private bool canInput = true;
 
     void Start()
     {
@@ -20,41 +24,46 @@ public class QTEManager : MonoBehaviour
     void Update()
     {
 
-        // 檢查玩家輸入
-        if (currentIndex < sequenceLength)
+        if (canInput && currentIndex < sequenceLength)
         {
             // 檢查當前按鈕是否與玩家輸入相符
-            if (Input.GetKeyDown(KeyCode.UpArrow) && currentSequence[currentIndex].name == "Botton_up")
+            if (Input.GetKeyDown(KeyCode.UpArrow) && currentSequence[currentIndex].name == "Button_up")
             {
                 currentIndex++;
-                Destroy(currentSequence[currentIndex - 1]);
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentSequence[currentIndex].name == "Botton_down")
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentSequence[currentIndex].name == "Button_down")
             {
                 currentIndex++;
-                Destroy(currentSequence[currentIndex - 1]);
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSequence[currentIndex].name == "Botton_left")
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSequence[currentIndex].name == "Button_left")
             {
                 currentIndex++;
-                Destroy(currentSequence[currentIndex - 1]);
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && currentSequence[currentIndex].name == "Botton_right")
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && currentSequence[currentIndex].name == "Button_right")
             {
                 currentIndex++;
-                Destroy(currentSequence[currentIndex - 1]);
+                generatedButtons[currentIndex-1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
             }
             else if (Input.anyKeyDown)
             {
-                ReGenerate();
+                canInput = false;
+                spawnPositionObj.GetComponent<Shake>().ShakeThis();
+                Invoke("ReGenerate", 0.5f);
             }
-
 
             // 如果序列輸入完成，執行攻擊
             if (currentIndex >= sequenceLength)
             {
+                Player = GameObject.Find("Player").GetComponent<PlayerControl>();
+                Enemy = GameObject.Find("Enemy").GetComponent<EnemyControl>();
+                Player.FirstAttack();
+                Enemy.Gethurt();
+                canInput = false;
                 Debug.Log("Attack");
-                ReGenerate();
+                Invoke("ReGenerate", 0.3f);
             }
         }
     }
@@ -67,24 +76,31 @@ public class QTEManager : MonoBehaviour
             currentSequence.Add(buttons[randomIndex]);
         }
         // 根據生成的按鈕序列生成按鈕在畫面中
-        float spacing = 2f; // 按鈕之間的間距
+        float spacing = 2f; // 按键之间的间距
         for (int i = 0; i < currentSequence.Count; i++)
         {
-            GameObject button = Instantiate(currentSequence[i], spawnPoint.position + Vector3.right * spacing * i, Quaternion.identity);
-            button.transform.SetParent(spawnPoint);
-            currentSequence[i].SetActive(true);
-            
+            GameObject button = Instantiate(currentSequence[i], spawnPosition.position + Vector3.right * spacing * i, Quaternion.identity, spawnPosition);
+            generatedButtons.Add(button);
+            button.SetActive(true);
         }
     }
 
-  
+    
     public void ReGenerate()
     {
+        foreach (var button in generatedButtons)
+        {
+            Destroy(button);
+        }
+        // 清空列表以便下次使用
+        generatedButtons.Clear();
         currentSequence.Clear();
         currentIndex = 0;
         GenerateRandomSequence();
-        
+        canInput = true;
+
     }
+    
    
     
 }

@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     }
     private Animator PlayerAnimator;
 
-    // Start is called before the first frame update
+ 
     void Start()
     {
         PlayerAnimator = GetComponent<Animator>();
@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
             attackState = AttackState.Idle;
         }
     }
-    private void Attcak()
+    public void Attcak()
     {
         // 根据当前攻击状态执行不同的逻辑
         switch (attackState)
@@ -54,7 +54,7 @@ public class PlayerControl : MonoBehaviour
                 break;
         }
     }
-    private void FirstAttack()
+    public void FirstAttack()
     {
         if (Time.time - lastAttackTime >= attackCooldown)
         {
