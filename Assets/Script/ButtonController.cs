@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    public Sprite pressedSprite; // 按下狀態的圖片
-    public Sprite unpressedSprite; // 未按下狀態的圖片
+    //押された状態のボタン画像素材
+    public Sprite pressedSprite;
+    //押されていない状態のボタン画像素材
+    public Sprite unpressedSprite; 
+    //SpriteRendererを宣言
     private SpriteRenderer sr;
     
     private void Start()
-    { 
+    {
+        //SpriteRendererを取得する
         sr = GetComponent<SpriteRenderer>();
+        //ボタン画像状態を初期化
         SetUnpressedState();
     }
     
-    // 切換按鈕圖片為按下狀態
+    
     public void SetPressedState()
     { 
+        //押された画像に変更
         sr.sprite = pressedSprite;
-        Debug.Log("已更改圖片");
+        Debug.Log("Preesed");
     }
     public void SetUnpressedState()
     {
+        //押されていない画像に変更
         sr.sprite = unpressedSprite;
-        Debug.Log("已重製圖片");
+        Debug.Log("UnPressed");
     }
-    public void Destroy()
-    {
-        Destroy(this.gameObject);
-    }
+    
 }
