@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class EnemyControl : MonoBehaviour
 {
+    
     //アニメーターを宣言する
     private Animator EnemeyAnimator;
     //タイマーのスクリプトを取得するためGMを宣言する
@@ -49,6 +50,7 @@ public class EnemyControl : MonoBehaviour
     }
     public void Dead()
     {
+        
         //死亡チェックON
         EnemeyAnimator.SetBool("isDead", true);
         //自分を削除

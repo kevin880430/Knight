@@ -25,7 +25,7 @@ public class QTEManager : MonoBehaviour
     //EnemyControlの情報を取得するため宣言する変数
     private EnemyControl Enemy;
     //入力許可チェック
-    private bool canInput = true;
+    public static bool canInput = true;
 
     void Start()
     {
