@@ -51,7 +51,7 @@ public class QTEManager : MonoBehaviour
                 //一致したら次のボタンを判断する(判断順番 + 1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); 
             }
             // プレイヤーの入力と現在順番のボタン一致するかとか(leftArrowKeyの場合)
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSequence[currentIndex].name == "Button_left")
@@ -59,7 +59,7 @@ public class QTEManager : MonoBehaviour
                 //一致したら次のボタンを判断する(判断順番 + 1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); 
             }
             // プレイヤーの入力と現在順番のボタン一致するかとか(rightArrowKeyの場合)
             else if (Input.GetKeyDown(KeyCode.RightArrow) && currentSequence[currentIndex].name == "Button_right")
@@ -67,7 +67,7 @@ public class QTEManager : MonoBehaviour
                 //一致したら次のボタンを判断する(判断順番 + 1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex-1].GetComponent<ButtonController>().SetPressedState(); // 調用按鈕上的函數
+                generatedButtons[currentIndex-1].GetComponent<ButtonController>().SetPressedState(); 
             }
             //ボタンが正確に押されていない場合
             else if (Input.anyKeyDown)
