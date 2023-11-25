@@ -8,7 +8,10 @@ public class RhythmControl : MonoBehaviour
     public Transform centerPoint;  // 中心点
     public float beatSpeed = 5f;   // 节拍移动速度
     public Animator BeatingAnimator;
-    
+    public bool isPerfect;
+    public bool isGood;
+    public bool isBad;
+
     void Start()
     {
         // 开始协程生成节拍
@@ -67,4 +70,27 @@ public class RhythmControl : MonoBehaviour
         }
 
     }
+    //各判定エリアの状態をチェック、0はnormal、1はperfect、2はBad
+    public virtual void OnTriggerEnterProxy(Collider2D other, RhythmJudge judge)
+    {
+        if (judge.JudgeIndex == 0)
+        {
+            isBad = false;
+            isGood = true;
+            isPerfect = false;
+        }
+        if (judge.JudgeIndex == 1)
+        {
+            isBad = false;
+            isGood = false;
+            isPerfect = true;  
+        }
+        if (judge.JudgeIndex == 2)
+        {
+            isBad = true;
+            isGood = false;
+            isPerfect = false;
+        }
+    }
+    
 }

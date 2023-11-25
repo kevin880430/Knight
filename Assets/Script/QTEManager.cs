@@ -26,6 +26,15 @@ public class QTEManager : MonoBehaviour
     private EnemyControl Enemy;
     //入力許可チェック
     public static bool canInput = true;
+    public RhythmControl rhythmControl;
+    public bool JudgeZonePerfect;
+    public bool JudgeZoneGood;
+    public bool JudgeZoneBad;
+    public GameObject PerfectObj;
+    public GameObject GoodObj;
+    public GameObject BadObj;
+    public Transform JudgeMentObjPos;
+
 
     void Start()
     {
@@ -34,16 +43,47 @@ public class QTEManager : MonoBehaviour
     }
     void Update()
     {
-        //入力可能なら
-        if (canInput && currentIndex < sequenceLength)
+        JudgeZoneBad = rhythmControl.isBad;
+        JudgeZoneGood = rhythmControl.isGood;
+        JudgeZonePerfect = rhythmControl.isPerfect;
+        if (Input.anyKeyDown && JudgeZoneBad)
         {
+            print("BADDDDDDD");
+            Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+            Enemy = GameObject.Find("Enemy").GetComponent<EnemyControl>();
+            Enemy.Attack();
+            //プレイヤーの被ダメージを処理する
+            PlayerHP = GameObject.Find("Player").GetComponent<HPSystem>();
+            PlayerHP.TakeDamage();
+            //新しいボタン生成するまで入力不可
+            canInput = false;
+            //ボタン画像を振動(入力違うの表現)
+            spawnPositionObj.GetComponent<Shake>().ShakeThis();
+            //0.5秒後新しいボタン生成する
+            Invoke("ReGenerate", 0.5f);
+        }
+        //入力可能なら
+        if (canInput && currentIndex < sequenceLength&&(JudgeZoneGood||JudgeZonePerfect))
+        {
+            
             // プレイヤーの入力と現在順番のボタン一致するかとか(upArrowKeyの場合)
-            if (Input.GetKeyDown(KeyCode.UpArrow) && currentSequence[currentIndex].name == "Button_up")
+            if (Input.GetKeyDown(KeyCode.UpArrow) && currentSequence[currentIndex].name == "Button_up"&& JudgeZoneGood)
             {
                 //一致したら次のボタンを判断する(判断順番+1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); 
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(GoodObj, JudgeMentObjPos.position , Quaternion.identity, JudgeMentObjPos);
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow) && currentSequence[currentIndex].name == "Button_up" && JudgeZonePerfect)
+            {
+                //一致したら次のボタンを判断する(判断順番+1)
+                currentIndex++;
+                //正確に押されたボタンの画像を押された状態に切り替え
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
             }
             // プレイヤーの入力と現在順番のボタン一致するかとか(downArrowKeyの場合)
             else if (Input.GetKeyDown(KeyCode.DownArrow) && currentSequence[currentIndex].name == "Button_down")
@@ -72,6 +112,8 @@ public class QTEManager : MonoBehaviour
             //ボタンが正確に押されていない場合
             else if (Input.anyKeyDown)
             {
+                print("input error");
+                Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
                 //Enemyの攻撃を処理する
                 Enemy = GameObject.Find("Enemy").GetComponent<EnemyControl>();
                 Enemy.Attack();
@@ -100,6 +142,7 @@ public class QTEManager : MonoBehaviour
                 //0.3秒後新しいボタン生成する
                 Invoke("ReGenerate", 0.3f);
             }
+         
         }
     }
     void GenerateRandomSequence()
