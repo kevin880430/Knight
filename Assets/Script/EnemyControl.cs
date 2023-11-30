@@ -15,6 +15,9 @@ public class EnemyControl : MonoBehaviour
     public static float currentHealth;
     //hpバーの図形
     public Image hpBar;
+    //FireBallのプレハブ
+    public GameObject fireballPrefab;
+    public Transform fireballPos;
     void Start()
     {
         //アニメーターを取得する
@@ -41,8 +44,6 @@ public class EnemyControl : MonoBehaviour
 
         }
     }
-
-    // Update is called once per frame
     public void GetHit()
     {
         //被ダメージアニメションを再生
@@ -50,7 +51,6 @@ public class EnemyControl : MonoBehaviour
     }
     public void Dead()
     {
-        
         //死亡チェックON
         EnemeyAnimator.SetBool("isDead", true);
         //自分を削除
@@ -63,6 +63,7 @@ public class EnemyControl : MonoBehaviour
 
     public void Attack()
     {
+        Instantiate(fireballPrefab, fireballPos);
         //攻撃アニメションを再生
         EnemeyAnimator.SetTrigger("Attack");
     }

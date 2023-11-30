@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Beat
   - Perfect
+  - Wall
   layers:
   - Default
   - TransparentFX

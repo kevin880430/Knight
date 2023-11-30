@@ -86,28 +86,61 @@ public class QTEManager : MonoBehaviour
                 Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
             }
             // プレイヤーの入力と現在順番のボタン一致するかとか(downArrowKeyの場合)
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentSequence[currentIndex].name == "Button_down")
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentSequence[currentIndex].name == "Button_down"&& JudgeZoneGood)
             {
                 //一致したら次のボタンを判断する(判断順番 + 1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); 
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(GoodObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentSequence[currentIndex].name == "Button_down" && JudgeZonePerfect)
+            {
+                //一致したら次のボタンを判断する(判断順番 + 1)
+                currentIndex++;
+                //正確に押されたボタンの画像を押された状態に切り替え
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
             }
             // プレイヤーの入力と現在順番のボタン一致するかとか(leftArrowKeyの場合)
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSequence[currentIndex].name == "Button_left")
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSequence[currentIndex].name == "Button_left"&& JudgeZoneGood)
             {
                 //一致したら次のボタンを判断する(判断順番 + 1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState(); 
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(GoodObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentSequence[currentIndex].name == "Button_left" && JudgeZonePerfect)
+            {
+                //一致したら次のボタンを判断する(判断順番 + 1)
+                currentIndex++;
+                //正確に押されたボタンの画像を押された状態に切り替え
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
             }
             // プレイヤーの入力と現在順番のボタン一致するかとか(rightArrowKeyの場合)
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && currentSequence[currentIndex].name == "Button_right")
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && currentSequence[currentIndex].name == "Button_right"&& JudgeZoneGood)
             {
                 //一致したら次のボタンを判断する(判断順番 + 1)
                 currentIndex++;
                 //正確に押されたボタンの画像を押された状態に切り替え
-                generatedButtons[currentIndex-1].GetComponent<ButtonController>().SetPressedState(); 
+                generatedButtons[currentIndex-1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(GoodObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && currentSequence[currentIndex].name == "Button_right" && JudgeZonePerfect)
+            {
+                //一致したら次のボタンを判断する(判断順番 + 1)
+                currentIndex++;
+                //正確に押されたボタンの画像を押された状態に切り替え
+                generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                //判定文字を表示する
+                Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
             }
             //ボタンが正確に押されていない場合
             else if (Input.anyKeyDown)
