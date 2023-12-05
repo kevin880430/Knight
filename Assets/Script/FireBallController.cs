@@ -6,9 +6,11 @@ public class FireBallController : MonoBehaviour
 {
     //爆発プレハブ
     public GameObject explodePrefab;
+    //飛ばし速度
+    public float speed=1;
     void Update()
     {
-        transform.Translate(Vector3.right*Time.deltaTime);
+        transform.Translate(Vector3.right* speed * Time.deltaTime);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

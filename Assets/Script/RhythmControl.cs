@@ -11,6 +11,7 @@ public class RhythmControl : MonoBehaviour
     public bool isPerfect;
     public bool isGood;
     public bool isBad;
+    private QTEManager qteManager;
 
     void Start()
     {
@@ -67,6 +68,7 @@ public class RhythmControl : MonoBehaviour
         {
             BeatingAnimator.SetBool("Beating", false);
             Debug.Log("untriggered");
+            GameObject.Find("GameManager").GetComponent<QTEManager>().EnemyGageFill(0.5f);
         }
 
     }

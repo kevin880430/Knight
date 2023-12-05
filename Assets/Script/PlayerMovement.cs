@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = hit.collider != null;
         PlayerAnimator.SetBool("IsGrounded", isGrounded);
         Debug.DrawRay(transform.position, Vector2.down * 0.9f, Color.red);
-        Move();
+        /*Move();*/
 
         // 跳跃
         
