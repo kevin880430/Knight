@@ -11,6 +11,13 @@ public class RhythmControl : MonoBehaviour
     public bool isPerfect;
     public bool isGood;
     public bool isBad;
+    public JUDGE_STATE JudgeState;
+    public enum JUDGE_STATE
+    {
+        ISPERFECT,
+        ISGOOD,
+        ISBAD
+    }
     private QTEManager qteManager;
 
     void Start()
@@ -77,21 +84,15 @@ public class RhythmControl : MonoBehaviour
     {
         if (judge.JudgeIndex == 0)
         {
-            isBad = false;
-            isGood = true;
-            isPerfect = false;
+            JudgeState = JUDGE_STATE.ISGOOD;
         }
         if (judge.JudgeIndex == 1)
         {
-            isBad = false;
-            isGood = false;
-            isPerfect = true;  
+            JudgeState = JUDGE_STATE.ISPERFECT;
         }
         if (judge.JudgeIndex == 2)
         {
-            isBad = true;
-            isGood = false;
-            isPerfect = false;
+            JudgeState = JUDGE_STATE.ISBAD;
         }
     }
     
