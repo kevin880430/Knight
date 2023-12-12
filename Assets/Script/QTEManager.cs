@@ -65,46 +65,56 @@ public class QTEManager : MonoBehaviour
         if (canInput && currentIndex < sequenceLength )
         {
             // 現在の順番のボタンと入力されたボタンが一致するか判定
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.C) && !Input.GetKeyDown(KeyCode.X))
             {
-              if (!string.IsNullOrEmpty(inputButton) && inputButton == currentSequence[currentIndex].name && !Input.GetKeyDown(KeyCode.C)&&!Input.GetKeyDown(KeyCode.X) && !InUltimate)
+              if (!string.IsNullOrEmpty(inputButton) && inputButton == currentSequence[currentIndex].name && !InUltimate)
               {
-                 switch (JudgeState)
-                 {
-                    case JUDGE_STATE.IS_PERFECT:
-                        //判定文字を表示する
-                        Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
-                        currentIndex++;
-                        generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
-                        break;
-                    case JUDGE_STATE.IS_GOOD:
-                        //判定文字を表示する
-                        Instantiate(GoodObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
-                        currentIndex++;
-                        generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
-                        break;
-                    case JUDGE_STATE.IS_BAD:
-                        //判定文字を表示する
-                        Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
-                        ErrorInputProcess();
-                        break;
+                    switch (JudgeState)
+                    {
+                        case JUDGE_STATE.IS_PERFECT:
+                            //判定文字を表示する
+                            Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+                            //現在の判定順番+1
+                            currentIndex++;
+                            //正確に押されたボタンの画像を切替
+                            generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                            //正確に押されたボタンを弾く(押された感)
+                            generatedButtons[currentIndex - 1].GetComponent<ButtonController>().Scale();
+                            break;
+                        case JUDGE_STATE.IS_GOOD:
+                            //判定文字を表示する
+                            Instantiate(GoodObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+                            //現在の判定順番+1
+                            currentIndex++;
+                            //正確に押されたボタンの画像を切替
+                            generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
+                            //正確に押されたボタンを弾く(押された感)
+                            generatedButtons[currentIndex - 1].GetComponent<ButtonController>().Scale();
 
-                 }
-                    
-              }
+                            break;
+                        case JUDGE_STATE.IS_BAD:
+                            //判定文字を表示する
+                            Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
+                            ErrorInputProcess();
+                            break;
+
+                    }
+
+                }
                 //技を使うとき判定ゾーンを無視する
-                if (InUltimate && !string.IsNullOrEmpty(inputButton) && inputButton == currentSequence[currentIndex].name)
+                else if (InUltimate && !string.IsNullOrEmpty(inputButton) && inputButton == currentSequence[currentIndex].name)
                 {
                     Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
                     currentIndex++;
                     generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
                 }
                 //技時間以外入力違いは認める
-                else if(!Input.GetKeyDown(KeyCode.C) && !Input.GetKeyDown(KeyCode.X)&&!InUltimate)
+                else if(!InUltimate)
                 {
                     Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
                     ErrorInputProcess();
                 }
+               
 
             }
             //全部のボタンが正確に押されたら
@@ -258,8 +268,8 @@ public class QTEManager : MonoBehaviour
     }
     private void  PlayerUlitmate()
     {
-        //技使うとき先ず全てのボタンを削除する
         CleanAllButton();
+        InUltimate = true;
         // ボタン順番をランダムで生成(設定ボタン数分)
         for (int i = 0; i < sequenceLength; i++)
         {

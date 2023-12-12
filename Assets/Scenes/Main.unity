@@ -164,6 +164,20 @@ MonoBehaviour:
   currentSequence: []
   generatedButtons: []
   spawnPositionObj: {fileID: 1323538171}
+  rhythmControl: {fileID: 0}
+  PerfectObj: {fileID: 0}
+  GoodObj: {fileID: 0}
+  BadObj: {fileID: 0}
+  JudgeMentObjPos: {fileID: 0}
+  PlayerGage: {fileID: 0}
+  EnemyGage: {fileID: 0}
+  PlayerGageValue: 10
+  EnemyGageValue: 10
+  UltimatePictruePrefab: {fileID: 0}
+  JudgeState: 0
+  inputButton: 
+  PerfectPoint: 2
+  GoodPoint: 1
 --- !u!4 &511029397
 Transform:
   m_ObjectHideFlags: 0
@@ -193,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownText: {fileID: 1876889222}
   totalTime: 30
+  transition: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   hpBar: {fileID: 807914040}
+  fireballPrefab: {fileID: 0}
+  fireballPos: {fileID: 0}
 --- !u!1 &1323538171
 GameObject:
   m_ObjectHideFlags: 0

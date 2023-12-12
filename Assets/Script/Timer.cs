@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using EasyTransition;
 public class Timer : MonoBehaviour
 {
     //タイマーを表示するテキスト
@@ -12,6 +12,10 @@ public class Timer : MonoBehaviour
     private float currentTime = 0f;
     //カウントダウン状態チェック
     private bool isCounting = false;
+    //Transition機能のクラスを格納
+    TransitionManager TransitionM;
+    //Transitionのエフェクト種類(Object)
+    public TransitionSettings transition;
 
     void Start()
     {
@@ -71,12 +75,7 @@ public class Timer : MonoBehaviour
         //1.5秒後GameClear画面に
         Invoke("GameClear", 1.5f);
     }
-    // 结束游戏
-    public void GameOver()
-    {
-        //GameOver画面に遷移
-        SceneManager.LoadScene("GameOver");
-    }
+    
     public void GameClear()
     {
         float remainingTime = currentTime;
