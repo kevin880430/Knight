@@ -37,8 +37,7 @@ public class PlayerMovement : MonoBehaviour
         /*Move();*/
 
         // 跳跃
-        
-            Jump();
+        Jump();
 
         if (isGrounded&&JumpTimer>=0.1f)
         {
@@ -49,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
-    void Jump()
+    public void Jump()
     {
         if (Input.GetKeyDown(KeyCode.C))
         { // 施加向上的力以进行跳跃 
@@ -58,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
                 rb2d.AddForce(Vector2.up * jumpForce);
                 PlayerAnimator.SetFloat("Run", 0);
                 PlayerAnimator.SetBool("Jump", true);
-                
             }
 
         }
@@ -106,5 +104,18 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-  
+    public void TestJump()
+    {
+        if (isGrounded)
+        {
+            rb2d.AddForce(Vector2.up * jumpForce);
+            PlayerAnimator.SetFloat("Run", 0);
+            PlayerAnimator.SetBool("Jump", true);
+        }
+        if (PlayerAnimator.GetBool("Jump"))
+        {
+            JumpTimer += Time.deltaTime;
+        }
+    }
+
 }

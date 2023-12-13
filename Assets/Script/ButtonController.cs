@@ -10,8 +10,10 @@ public class ButtonController : MonoBehaviour
     public Sprite unpressedSprite;
     //SpriteRendererを宣言
     private SpriteRenderer sr;
-    public Vector3 pressedScale = new Vector3(0.8f, 0.8f, 0.8f); // 按下时的缩放值
-    public float effectDuration = 0.1f; // 效果持续时间
+    // 押された瞬間のサイズ調整値
+    public Vector3 pressedScale = new Vector3(0.8f, 0.8f, 0.8f); 
+    //サイズ変更の間時間
+    public float effectDuration = 0.1f; 
 
     private void Start()
     {
@@ -38,15 +40,16 @@ public class ButtonController : MonoBehaviour
     }
     IEnumerator ScaleButton()
     {
-        Vector3 originalScale = this.transform.localScale; // 保存原始缩放值
+        // ボタンの画像サイズを保存
+        Vector3 originalScale = this.transform.localScale; 
 
-        // 缩小按钮
+        //ボタンの画像を縮小
         this.transform.localScale = pressedScale;
 
-        // 等待一段时间
+        // しばらく待つ
         yield return new WaitForSeconds(effectDuration);
 
-        // 恢复按钮原始大小
+        // ボタンの画像サイズを戻す
         this.transform.localScale = originalScale;
     }
 

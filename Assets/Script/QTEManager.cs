@@ -52,6 +52,9 @@ public class QTEManager : MonoBehaviour
 
     void Start()
     {
+        //プレイヤーと敵のスクリプトを取得する
+        Player = GameObject.Find("Player").GetComponent<PlayerControl>();
+        Enemy = GameObject.Find("Enemy").GetComponent<EnemyControl>();
         //ボタンをランダム生成する
         GenerateRandomSequence();
     }
@@ -127,8 +130,6 @@ public class QTEManager : MonoBehaviour
                     sequenceLength = 4;
                 }
                 //プレイヤーの攻撃と敵の被ダメージを処理する
-                Player = GameObject.Find("Player").GetComponent<PlayerControl>();
-                Enemy = GameObject.Find("Enemy").GetComponent<EnemyControl>();
                 Player.FirstAttack();
                 Enemy.Gethurt();
                 //新しいボタン生成するまで入力不可

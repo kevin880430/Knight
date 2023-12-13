@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RhythmControl : MonoBehaviour
+public class TutorialRhythmControl : MonoBehaviour
 {
     //ノーツのプレハブ
     public GameObject beatPrefab;  
@@ -16,7 +16,6 @@ public class RhythmControl : MonoBehaviour
     public JUDGE_STATE JudgeState;
     private float notecount=0;
     private TutorialManager tutorial;
-    private QTEManager qteManager;
     public enum JUDGE_STATE
     {
         //良い、可、不可三つの状態
@@ -27,7 +26,7 @@ public class RhythmControl : MonoBehaviour
     void Start()
     {
         //GameManageのScriptを取得する
-        qteManager = GameObject.Find("GameManager").GetComponent<QTEManager>();
+        tutorial=GameObject.Find("GameManager").GetComponent<TutorialManager>();
         //ノーツを生成
         StartCoroutine(GenerateBeats());
     }
@@ -97,9 +96,17 @@ public class RhythmControl : MonoBehaviour
             BeatingAnimator.SetBool("Beating", false);
             Debug.Log("untriggered");
             //判定したノーツを計算
+            notecount++;
+            //ノーツが二個判定したら
+            if (notecount == 2&&tutorial!=null)
+            {
+                //自動的ボタンを判定
+                tutorial.AutoJudge();
+                notecount = 0;
+            }
             //Enemyゲージを溜まる
-            qteManager.EnemyGageFill(0.5f);
-            
+            tutorial.EnemyGageFill(1);
+
         }
 
     }

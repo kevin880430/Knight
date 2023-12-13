@@ -15,16 +15,25 @@ public class ChangeScene : MonoBehaviour
     public string SceneName;
     void Update()
     {
-        //Rを押したらメイン画面に戻る
+      /*  
         if (Input.GetKeyDown(KeyCode.R))
         {
             TransitionM = TransitionManager.Instance();
             TransitionM.Transition(transition, 0.0f);
             Invoke("LoadScene", 1f);
-        }
+        }*/
+    }
+    public void TransitionScene()
+    {
+        //Transitionを行う
+        TransitionM = TransitionManager.Instance();
+        //Transitionの種類、開始までの時間
+        TransitionM.Transition(transition, 0.0f);
+        Invoke("LoadScene", 1f);
     }
     void LoadScene()
     {
+        //Sceneを切り替える
         SceneManager.LoadScene(SceneName);
     }
 }
