@@ -7,8 +7,10 @@ public class EnemyControl : MonoBehaviour
     
     //アニメーターを宣言する
     private Animator EnemeyAnimator;
+    //ChangeSceneのスクリプトを取得するためGMを宣言する
+    private ChangeScene changeScene;
     //タイマーのスクリプトを取得するためGMを宣言する
-    private Timer GameManager;
+    private Timer timer;
     //最大hp
     public float maxHealth = 3.0f;
     //現在hp
@@ -20,6 +22,10 @@ public class EnemyControl : MonoBehaviour
     public Transform fireballPos;
     void Start()
     {
+        //ChangeSceneスクリプトを取得する
+        changeScene = GameObject.Find("GameManager").GetComponent<ChangeScene>();
+        //ChangeSceneスクリプトを取得する
+        timer = GameObject.Find("GameManager").GetComponent<Timer>();
         //アニメーターを取得する
         EnemeyAnimator = GetComponent<Animator>();
         //hp初期化
@@ -53,18 +59,21 @@ public class EnemyControl : MonoBehaviour
     {
         //死亡チェックON
         EnemeyAnimator.SetBool("isDead", true);
-        //自分を削除
-        Destroy(this.gameObject, 0.9f);
-        //タイマースクリプトを取得する
-        GameManager = GameObject.Find("GameManager").GetComponent<Timer>();
         //GameClear画面に遷移
-        GameManager.DelayClear();
+        Invoke("GameClear", 1.5f);
     }
-
     public void Attack()
     {
         Instantiate(fireballPrefab, fireballPos);
         //攻撃アニメションを再生
         EnemeyAnimator.SetTrigger("Attack");
+    }
+    public void GameClear()
+    {
+        //残り時間を取得する
+        timer.RecordTime();
+        //GameClearに画面遷移
+        changeScene.TransitionToScene("GameClear");
+        
     }
 }

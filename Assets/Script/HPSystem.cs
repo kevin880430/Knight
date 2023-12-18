@@ -9,7 +9,8 @@ public class HPSystem : MonoBehaviour
     public static float currentHealth;
     //hpバーの図形
     public Image hpBar;
-   
+    //ChangeSceneのスクリプトを取得する
+    //PlayerControllのスクリプトを取得する
     private PlayerControl Player;
     private void Start()
     {
@@ -36,13 +37,6 @@ public class HPSystem : MonoBehaviour
             Debug.Log("Player has died!");
             //死亡アニメーションを再生
             Player.Dead();
-
         }
-    }
-
-    public void Die()
-    {
-        //GameOverに画面遷移
-        SceneManager.LoadScene("GameOver");
     }
 }

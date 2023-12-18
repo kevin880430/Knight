@@ -115,8 +115,7 @@ public class TutorialManager : MonoBehaviour
                 sequenceLength = 4;
             }
             //プレイヤーの攻撃と敵の被ダメージを処理する
-            
-            Player.FirstAttack();
+            Player.AttackMode("Attack1");
             Enemy.Gethurt();
             //新しいボタン生成するまで入力不可
             canInput = false;
@@ -135,8 +134,8 @@ public class TutorialManager : MonoBehaviour
             Enemy.Attack();
             //プレイヤーを自動的ジャンプさせる
             PlayerM.TestJump();
-            EnemyGage.fillAmount = 0;
-            
+            //敵のゲージをリセット
+            EnemyGage.fillAmount = 0;   
         }
     }
     private void CleanAllButton()

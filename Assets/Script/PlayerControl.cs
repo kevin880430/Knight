@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum AttackState
+{
+    //プレイヤーの攻撃状態
+    Idle,
+    FirstAttack,
+    SecondAttack
+}
 public class PlayerControl : MonoBehaviour
 {
     //攻撃状態を宣言
@@ -12,22 +18,17 @@ public class PlayerControl : MonoBehaviour
     public float comboTimeout = 1.0f; 
     //攻撃入力制限時間
     public float attackCooldown = 0.5f;
-    //タイマーのスクリプトを取得するためGMを宣言する
-    private Timer GameManager;
+    //ChangeSceneのスクリプトを取得する
+    private ChangeScene changeScene;
     //アニメーターを宣言
     private Animator PlayerAnimator;
-    public enum AttackState
-    {
-        //プレイヤーの攻撃状態
-        Idle,        
-        FirstAttack, 
-        SecondAttack 
-    }
-    
-
- 
+    //HPSystemのスクリプトを取得する
+    private HPSystem hpSystem;
     void Start()
     {
+        //ChangeScene、hpSystemのスクリプトを取得する
+        changeScene = GameObject.Find("GameManager").GetComponent<ChangeScene>();
+        hpSystem = GameObject.Find("Player").GetComponent<HPSystem>();
         //アニメーターを取得する
         PlayerAnimator = GetComponent<Animator>();
     }
@@ -36,7 +37,7 @@ public class PlayerControl : MonoBehaviour
         // Zを押されたらプレイヤーの攻撃を処理
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Attcak();
+            Attack();
         }
 
         // 攻撃した後一定時間後プレイヤーの攻撃状態をリセット
@@ -45,52 +46,40 @@ public class PlayerControl : MonoBehaviour
             attackState = AttackState.Idle;
         }
     }
-    public void Attcak()
+    public void Attack()
     {
         // 今の攻撃状態によって、違う攻撃処理をする
         switch (attackState)
         {
             case AttackState.Idle:
                 // 一撃
-                FirstAttack();
+                AttackMode("Attack1");
                 break;
             case AttackState.FirstAttack:
                 // 二連撃
-                SecondAttack();
+                AttackMode("Attack2");
                 break;
             case AttackState.SecondAttack:
                 // 二連撃後一から連撃
-                FirstAttack();
+                AttackMode("Attack1");
                 break;
         }
     }
-    public void FirstAttack()
+    public void AttackMode(string attackName)
     {
         //攻撃頻度制限時間内なら
         if (Time.time - lastAttackTime >= attackCooldown)
         {
-            
-            Debug.Log("Performing First Attack");
+
+            Debug.Log(attackName);
             //攻撃状態の移行
             attackState = AttackState.FirstAttack;
             //攻撃アニメションを再生
-            PlayerAnimator.SetTrigger("Attack1");
+            PlayerAnimator.SetTrigger(attackName);
             //攻撃時間を記録(制限時間を計算するため)
             lastAttackTime = Time.time;
         }
-      
-    }
 
-    private void SecondAttack()
-    {
-        
-        Debug.Log("Performing Second Attack");
-        //攻撃状態の移行
-        attackState = AttackState.SecondAttack;
-        //攻撃アニメションを再生(二連撃目)
-        PlayerAnimator.SetTrigger("Attack2");
-        //攻撃時間を記録(制限時間を計算するため)
-        lastAttackTime = Time.time;
     }
     public void GetHit()
     {
@@ -102,10 +91,24 @@ public class PlayerControl : MonoBehaviour
         //死亡アニメションを再生
         PlayerAnimator.SetTrigger("isDead");
         //自分を削除する
-        Destroy(this.gameObject, 1.5f);
-        //タイマースクリプトを取得する
-        GameManager = GameObject.Find("GameManager").GetComponent<Timer>();
-        //GameOver画面に遷移
-        GameManager.DelayEnd();
+        Invoke("GameOver", 1.5f);
+       
+    }
+    //ゲームオーバー画面に遷移
+    void GameOver()
+    {
+        changeScene.TransitionToScene("GameOver");
+    }
+
+    //FireBallに当たったらhpを減らす
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("FireBall"))
+        {
+            //ダメージアニメションを再生
+            GetHit();
+            //ダメージする
+            hpSystem.TakeDamage();
+        }
     }
 }

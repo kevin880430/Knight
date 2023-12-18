@@ -26,30 +26,34 @@ public class QTEManager : MonoBehaviour
     private EnemyControl Enemy;
     //入力許可チェック
     public static bool canInput = true;
+    //RhythmControlを取得する
     public RhythmControl rhythmControl;
-    public GameObject PerfectObj;
-    public GameObject GoodObj;
-    public GameObject BadObj;
-    public Transform JudgeMentObjPos;
-    public Image PlayerGage;
-    public Image EnemyGage;
-    public float PlayerGageValue = 10.0f;
-    public float EnemyGageValue = 10.0f;
+    //技の画像プレハブ
     public GameObject UltimatePictruePrefab;
+    //良い判定の文字プレハブ
+    public GameObject PerfectObj;
+    //可判定の文字プレハブ
+    public GameObject GoodObj;
+    //不可判定の文字プレハブ
+    public GameObject BadObj;
+    //判定文字を生成する場所
+    public Transform JudgeMentObjPos;
+    //プレイヤーゲージの画像
+    public Image PlayerGage;
+    //敵のゲージの画像
+    public Image EnemyGage;
+    //プレイヤーゲージ最大値
+    public float PlayerGageValue = 10.0f;
+    //プレイヤーゲージの最大値
+    public float EnemyGageValue = 10.0f;
+    //今の判定状態
     public JUDGE_STATE JudgeState;
+    //ボタンの名前を判別
     public string inputButton = "";
-    public float PerfectPoint=2;
-    public float GoodPoint = 1;
+    //技使ってるかとか
     private bool InUltimate=false;
 
-    public enum JUDGE_STATE
-    {
-        //判定ゾーン
-        IS_PERFECT,
-        IS_GOOD,
-        IS_BAD
-    }
-
+   
     void Start()
     {
         //プレイヤーと敵のスクリプトを取得する
@@ -103,10 +107,11 @@ public class QTEManager : MonoBehaviour
 
                     }
 
-                }
+              }
                 //技を使うとき判定ゾーンを無視する
                 else if (InUltimate && !string.IsNullOrEmpty(inputButton) && inputButton == currentSequence[currentIndex].name)
                 {
+                    //判定文字を表示する
                     Instantiate(PerfectObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
                     currentIndex++;
                     generatedButtons[currentIndex - 1].GetComponent<ButtonController>().SetPressedState();
@@ -114,6 +119,7 @@ public class QTEManager : MonoBehaviour
                 //技時間以外入力違いは認める
                 else if(!InUltimate)
                 {
+                    //判定文字を表示する
                     Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
                     ErrorInputProcess();
                 }
@@ -130,7 +136,7 @@ public class QTEManager : MonoBehaviour
                     sequenceLength = 4;
                 }
                 //プレイヤーの攻撃と敵の被ダメージを処理する
-                Player.FirstAttack();
+                Player.AttackMode("Attack1");
                 Enemy.Gethurt();
                 //新しいボタン生成するまで入力不可
                 canInput = false;
@@ -187,12 +193,10 @@ public class QTEManager : MonoBehaviour
     private void ErrorInputProcess()
     {
         print("input error");
+        //判定文字を表示する
         Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
         //Enemyゲージを溜まる
         EnemyGageFill(1.0f);
-        /*//プレイヤーの被ダメージを処理する
-        PlayerHP = GameObject.Find("Player").GetComponent<HPSystem>();
-        PlayerHP.TakeDamage();*/
         //新しいボタン生成するまで入力不可
         canInput = false;
         //ボタン画像を振動(入力違うの表現)
@@ -203,15 +207,15 @@ public class QTEManager : MonoBehaviour
     private void JudgeStateDetect()
     {
         //判定ゾーンを検知
-        if (rhythmControl.JudgeState == RhythmControl.JUDGE_STATE.ISPERFECT)
+        if (rhythmControl.JudgeState == JUDGE_STATE.IS_PERFECT)
         {
             JudgeState = JUDGE_STATE.IS_PERFECT;
         }
-        if (rhythmControl.JudgeState == RhythmControl.JUDGE_STATE.ISGOOD)
+        if (rhythmControl.JudgeState == JUDGE_STATE.IS_GOOD)
         {
             JudgeState = JUDGE_STATE.IS_GOOD;
         }
-        if (rhythmControl.JudgeState == RhythmControl.JUDGE_STATE.ISBAD)
+        if (rhythmControl.JudgeState == JUDGE_STATE.IS_BAD)
         {
             JudgeState = JUDGE_STATE.IS_BAD;
         }
@@ -239,6 +243,7 @@ public class QTEManager : MonoBehaviour
     }
     private void PlayerGageFill()
     {
+        //プレイヤーゲージを溜める
         PlayerGage.fillAmount += 2 / PlayerGageValue;
         
     }
@@ -247,9 +252,10 @@ public class QTEManager : MonoBehaviour
        EnemyGage.fillAmount += FillAmount / EnemyGageValue;
         if (EnemyGage.fillAmount == 1)
         {
-            //Enemyの攻撃を処理する
+            //敵の攻撃を処理する
             Enemy = GameObject.Find("Enemy").GetComponent<EnemyControl>();
             Enemy.Attack();
+            //敵のゲージを溜める
             EnemyGage.fillAmount = 0;
         }
     }

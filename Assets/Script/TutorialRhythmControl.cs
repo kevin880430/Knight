@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class TutorialRhythmControl : MonoBehaviour
 {
     //ノーツのプレハブ
@@ -16,13 +15,6 @@ public class TutorialRhythmControl : MonoBehaviour
     public JUDGE_STATE JudgeState;
     private float notecount=0;
     private TutorialManager tutorial;
-    public enum JUDGE_STATE
-    {
-        //良い、可、不可三つの状態
-        ISPERFECT,
-        ISGOOD,
-        ISBAD
-    }
     void Start()
     {
         //GameManageのScriptを取得する
@@ -113,24 +105,18 @@ public class TutorialRhythmControl : MonoBehaviour
     //各判定エリアの状態をチェック、0はnormal、1はperfect、2はBad
     public virtual void OnTriggerEnterProxy(Collider2D other, RhythmJudge judge)
     {
-        //判定番号は0の場合
-        if (judge.JudgeIndex == 0)
+        switch (judge.JudgeIndex)
         {
-            //可の状態に切替
-            JudgeState = JUDGE_STATE.ISGOOD;
-        }
-        //判定番号は1の場合
-        if (judge.JudgeIndex == 1)
-        {
-            //良の状態に切替
-            JudgeState = JUDGE_STATE.ISPERFECT;
-        }
-        //判定番号は2の場合
-        if (judge.JudgeIndex == 2)
-        {
-            //不可の状態に切替
-            JudgeState = JUDGE_STATE.ISBAD;
+            case 0:
+                JudgeState = JUDGE_STATE.IS_GOOD;
+                break;
+            case 1:
+                JudgeState = JUDGE_STATE.IS_PERFECT;
+                break;
+            case 2:
+                JudgeState = JUDGE_STATE.IS_BAD;
+                break;
         }
     }
-    
+
 }

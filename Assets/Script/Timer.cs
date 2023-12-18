@@ -16,9 +16,12 @@ public class Timer : MonoBehaviour
     TransitionManager TransitionM;
     //Transitionのエフェクト種類(Object)
     public TransitionSettings transition;
-
+    //ChangeSceneのスクリプトを取得する
+    private ChangeScene changeScene;
     void Start()
     {
+        //ChangeSceneのスクリプトを取得する
+        changeScene = GameObject.Find("GameManager").GetComponent<ChangeScene>();
         //時間を初期化
         currentTime = totalTime;
         //カウントされてる時間テキストを更新する
@@ -44,7 +47,7 @@ public class Timer : MonoBehaviour
                 currentTime = 0f;
                 isCounting = false;
                 countdownText.text = "Times Up!";
-                DelayEnd();
+                changeScene.TransitionToScene("GameOver");
             }
             ////カウントされてる時間テキストを更新する
             UpdateCountdownText();
@@ -65,23 +68,11 @@ public class Timer : MonoBehaviour
         //カウントダウン状態on
         isCounting = true;
     }
-    public void DelayEnd()
-    {
-        //1.5秒後GameOver画面に
-        Invoke("GameOver", 1.5f);
-    }
-    public void DelayClear()
-    {
-        //1.5秒後GameClear画面に
-        Invoke("GameClear", 1.5f);
-    }
     
-    public void GameClear()
+    public void RecordTime()
     {
         float remainingTime = currentTime;
         //残り時間を記録する
         PlayerPrefs.SetFloat("RemainingTime", remainingTime);
-        //GameClear画面に遷移
-        SceneManager.LoadScene("GameClear");
     }
 }
