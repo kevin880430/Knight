@@ -197,12 +197,12 @@ public class QTEManager : MonoBehaviour
         Instantiate(BadObj, JudgeMentObjPos.position, Quaternion.identity, JudgeMentObjPos);
         //Enemyゲージを溜まる
         EnemyGageFill(1.0f);
-        //新しいボタン生成するまで入力不可
-        canInput = false;
+        /*//新しいボタン生成するまで入力不可
+        canInput = false;*/
         //ボタン画像を振動(入力違うの表現)
         spawnPositionObj.GetComponent<Shake>().ShakeThis();
-        //0.5秒後新しいボタン生成する
-        Invoke("ReGenerate", 0.5f);
+       /* //0.5秒後新しいボタン生成する
+        Invoke("ReGenerate", 0.5f);*/
     }
     private void JudgeStateDetect()
     {

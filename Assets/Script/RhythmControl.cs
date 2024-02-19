@@ -22,6 +22,8 @@ public class RhythmControl : MonoBehaviour
     public JUDGE_STATE JudgeState;
     //qteManagerを取得する
     private QTEManager qteManager;
+    //Perfect用Timer
+    private float perfectTimer;
     void Start()
     {
         //GameManageのScriptを取得する
@@ -96,7 +98,6 @@ public class RhythmControl : MonoBehaviour
             Debug.Log("untriggered");
             //Enemyゲージを溜まる
             qteManager.EnemyGageFill(0.5f);
-            
         }
 
     }
